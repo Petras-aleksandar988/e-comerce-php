@@ -47,7 +47,13 @@ $products = $cart->get_cart_items();
 echo " <img  width ='60'  width='60'   src='public/product_images/no_image.png'>";
 }
 ?></td>
-               <td>   <a href="delete-product-from-cart.php?id=<?=$product['cart_id']  ?>" class="btn btn-danger">Delete</a></td>
+               <td> <form action="delete-product-from-cart.php" method="POST">
+                  <input type="hidden" name="cart_id" value="<?php echo $product['cart_id']; ?>">
+               <button class="btn btn-danger">Delete</button>
+
+               </form> 
+            
+            </td>
 
             </tr>
             <?php  endforeach ?>

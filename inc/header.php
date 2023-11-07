@@ -1,6 +1,8 @@
-<?php  require_once 'app/config/config.php';
+<?php 
+session_start();
+ require_once 'app/config/config.php';
   require_once 'app/classes/User.php';
-  require_once 'app/classes/cart.php';
+  require_once 'app/classes/Cart.php';
 $user = new User();
 $cart = new Cart();    
 $cartCount = $cart->get_cart_items();

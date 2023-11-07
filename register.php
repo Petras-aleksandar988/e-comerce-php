@@ -1,7 +1,7 @@
 
 <?php 
-require_once "app/classes/User.php";
 require_once "inc/header.php";
+
 
 if($user->isLogged()){
     echo '<script type="text/javascript">window.location = "index.php"</script>';

@@ -65,7 +65,11 @@ echo " <img  width ='60'  width='60'   src='public/product_images/no_image.png'>
 ?></td>
                <td><?= $order['delivery_address']  ?></td>
                <td><?= $order['created_at']  ?></td>
-               <td>   <a href="delete-product-from-orders.php?id=<?=$order['order_items_id']  ?>" class="btn btn-danger">Delete </a></td>
+               <td>  <form action="delete-product-from-orders.php" method="POST">
+                  <input type="hidden" name="order_items_id" value="<?php echo $order['order_items_id']; ?>">
+               <button class="btn btn-danger">Delete</button>
+
+               </form></td>
 
             </tr>
             <?php  endforeach ?>
