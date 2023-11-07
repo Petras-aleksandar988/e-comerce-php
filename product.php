@@ -6,14 +6,15 @@
   $product = new Product();
   $product = $product->read($_GET['product_id']);
 
-
   if($_SERVER['REQUEST_METHOD'] == "POST"){
     $product_id = $product['product_id'];
      $user_id = $_SESSION['user_id'];
-    echo $product_id , $user_id;
+     $quantity = $_POST['quantity'];
+   
      $cart = new Cart();
-     $cart->add_to_cart($product_id,$user_id);
+     $cart->add_to_cart($product_id, $user_id,$quantity);
      echo '<script type="text/javascript">window.location = "cart.php"</script>';
+
      exit();
 
   }
@@ -36,9 +37,9 @@
             <p class="card-text">Price: $<?= $product['price'] ?></p>
 
        <form action="" method="POST">
-
+       Quantity: <input class="col-sm-2" required min="1" type="number" name="quantity"><br>
        <input type="hidden" class="product_id" value="<?= $product['product_id'] ?>">
-       <button type="submit" class="btn btn-primary">Add to Cart</button>
+       <button type="submit" class="btn btn-primary mt-2">Add to Cart</button>
 
        </form>
         </div>

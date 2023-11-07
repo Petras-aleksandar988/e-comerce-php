@@ -1,6 +1,9 @@
 <?php  require_once 'app/config/config.php';
   require_once 'app/classes/User.php';
+  require_once 'app/classes/cart.php';
 $user = new User();
+$cart = new Cart();    
+$cartCount = $cart->get_cart_items();
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +44,7 @@ $user = new User();
         <?php else: ?>
 
             <li class="nav-item ">
-            <a href="cart.php" class="nav-link">  <img src="public/product_images/cart.png"> Cart</a>
+            <a href="cart.php" class="nav-link cart  <?php echo (count($cartCount) === 0) ? 'empty' : ''; ?>">  <img src="public/product_images/cart.png"> Cart</a>
         </li>
             <li class="nav-item ">
             <a href="orders.php" class="nav-link">My Orders</a>
@@ -76,3 +79,27 @@ $user = new User();
 </div>
 <?php endif; ?>
 
+<style>
+
+a.cart {
+    position: relative; /* Set the position to relative */
+
+   
+}
+    a.cart::before {
+        content: "<?= count($cartCount) ?>";
+        position: absolute;
+        top: -6px;
+        left: -9px;
+        background-color: #74c273;
+        color: #1a1717;
+        padding: 1px 5px;
+        border-radius: 5px;
+    }
+    a.cart.empty::before {
+    display: none; /* Hide the ::before pseudo-element when the cart is empty */
+}
+
+
+
+</style>
