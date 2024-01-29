@@ -1,0 +1,10 @@
+.card-img-top{
+    max-height: 160px;
+    background: black;
+}
+body{
+    background-color: red;
+}
+.navbarNav{
+    background-color: red;
+}

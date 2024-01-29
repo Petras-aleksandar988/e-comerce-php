@@ -1,11 +1,15 @@
 <?php 
 session_start();
- require_once 'app/config/config.php';
+require_once 'app/config/config.php';
   require_once 'app/classes/User.php';
   require_once 'app/classes/Cart.php';
+require_once 'app/classes/Order.php';
+
 $user = new User();
 $cart = new Cart();    
 $cartCount = $cart->get_cart_items();
+$order = new Order();
+$orders = $order->get_orders();
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +19,8 @@ $cartCount = $cart->get_cart_items();
 
     <title>E-commerce</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+    
+    <!-- <link rel="stylesheet" href="../public/css/style.css"> -->
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 
 </head>
@@ -25,15 +30,12 @@ $cartCount = $cart->get_cart_items();
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
 
 <div class="container">
- <div href="#" class="nabar-brand  h4">E-commerce</div>
-<div class=" collapse navbar-collapse justify-content-between" id="navbarNav">
-    <ul class="navbar-nav">
-        <li class="nav-item active">
-            <a href="index.php" class="nav-link">Home</a>
-        </li>
-
+       <a href="index.php" class="nav-link">Home</a>
+    <div class=" d-flex justify-content-between" id="navbarNav">
+   
     </ul>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto  d-flex  flex-row gap-2">
+    
 
    <?php if (!$user->isLogged()) : ?>
 
@@ -46,10 +48,10 @@ $cartCount = $cart->get_cart_items();
         <?php else: ?>
 
             <li class="nav-item ">
-            <a href="cart.php" class="nav-link cart  <?php echo (count($cartCount) === 0) ? 'empty' : ''; ?>">  <img src="public/product_images/cart.png"> Cart</a>
+            <a href="cart.php" class="nav-link cart  <?php echo (empty($cartCount))  ? 'empty' : ''; ?>">  <img src="public/product_images/cart.png"> Cart</a>
         </li>
             <li class="nav-item ">
-            <a href="orders.php" class="nav-link">My Orders</a>
+            <a href="orders.php" class="nav-link  <?php echo (!empty($orders))  ? 'newOrder' : ''; ?>">My Orders</a>
         </li>
         <li class="nav-item ">
             <a href="logout.php" class="nav-link">Logout</a>
@@ -59,7 +61,6 @@ $cartCount = $cart->get_cart_items();
     </ul>
 
 </div>
-
 </div>
 
 
@@ -102,6 +103,10 @@ a.cart {
     display: none; /* Hide the ::before pseudo-element when the cart is empty */
 }
 
+.newOrder{
+    color: red;
+    font-weight: 600;
+}
 
 
 </style>

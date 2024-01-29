@@ -1,6 +1,10 @@
-<?php require_once "inc/header.php";
+<?php
+
+
+  require_once 'app/config/config.php';
+require_once "inc/header.php";
 require_once 'app/classes/Product.php';
-require_once 'app/classes/Cart.php';
+// require_once 'app/classes/Cart.php';
 $products = new Product();
 
 $productsList = $products->fetch_all();
@@ -28,16 +32,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   }
 ?>
 
-<div class="container">
-    <div class="row">
+  <div class="product">
     <?php  foreach($productsList as $product):  ?>
 
-   <div class="col-md-2">
-    <div class="card my-1">
-        <!-- <img src="public/product_images/<?= $product['image'] ?>"  class="card-img-top"> -->
+  
+    <div class=" card mx-2">
         <?php if($product['image']) {?>
 
-<img width="160" height='160'  class="card-img-top"  src="public/product_images/<?php echo $product['image']; ?>">  
+<img  class="card-img-top"  src="public/product_images/<?php echo $product['image']; ?>">  
 
 
             <?php } else {
@@ -58,14 +60,32 @@ echo " <img width ='160' height='160'  class='card-img-top' height='60' src='pub
             <a  href="product.php?product_id=<?= $product['product_id']?>"  class="btn btn-primary mt-2 w-100">View Product</a>
         </div>
     </div>
-   </div>
+  
 
 
 
     <?php  endforeach   ?>
 
     </div>
-</div>
+
+
+ <style>
+.product{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(195px, 300px));
+    width: 100%;
+    /* gap: 16px; */
+    padding-top: 0px;
+    justify-content: center;
+}
+
+.card-img-top{
+    max-height: 160px;
+    max-width: 160px;
+    margin: 0 auto;
+}
+
+ </style>
 
  
 

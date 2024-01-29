@@ -1,5 +1,5 @@
 <?php 
-  
+  session_start();
   require  "../app/config/config.php";
   require  "../app/classes/User.php";
   require  "../app/classes/Product.php";

@@ -18,10 +18,10 @@
 
 
 
-<div class="container my-auto mt-2">
-<div class="row">
+<div class=" mx-3">
+<div class="">
 
-   <div class="col-md-11 border border-secondary mx-auto">
+   <div class="col-md-12 border border-secondary mx-auto">
     
          <h2>Products List</h2>
          <a href="add_product.php" class="btn btn-success my-1">Add Product</a>
