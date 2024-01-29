@@ -1,5 +1,5 @@
 <?php 
- include 'config-template.php';
+ include 'config_info/config-template.php';
 
 $conn = mysqli_connect($config['servername'],
 $config['db_username'],
