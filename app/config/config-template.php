@@ -1,7 +1,7 @@
 <?php
 $config = [
-    'servername' => 'DB_SERVER',
-    'username' => 'DB_USERNAME',
-    'password' => 'DB_PASSWORD',
-    'database' => 'DB_NAME',
+    'servername' => "localhost",
+   'db_username' => "root" ,
+   'db_password' => "" ,
+   'database_name' => "shop" ,
 ];
